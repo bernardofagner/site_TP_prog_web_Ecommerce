@@ -1,0 +1,1 @@
+console.log('Script em static/js/scripts.js funcionando ^^');

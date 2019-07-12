@@ -1,0 +1,47 @@
+Plugins/pacotes que devem ser instalados neste projeto{
+    <pip install django-fontawesome>
+    <pip install django-widget-tweaks>
+    <pip install Pillow> = para usar models.ImageField() no models.py
+}
+
+Recriar o banco de dados{
+    Se der alguma treta no DB, exclua o arquivo db.sqlite3
+    Exclua todos os arquivos da pasta migrations, exceto o __init__.py
+    Realize as alterações no model.py
+    faça o <python manage.py makemigrations>
+    faça o <python manage.py migrate>
+    recrie o superusuario do banco de dados, faça: <python manage.py createsuperuser>
+}
+
+Tarefas a fazer{
+    Arrumar o form de cadastro de usuarios
+}
+
+Faça estes comandos no terminal CMD (ou via powershell, mas mude a politica de execução de scripts usando <Set-ExecutionPolicy RemoteSigned>)
+
+Crie um repositório para o seu projeto e dentro dela crie o ambiente virtual para a instalação de pacotes a serem usados apenas na sua aplicação e não no sistema como um todo, faça: <python -m venv nome_do_ambiente>. O nome do ambiente pode ser "vemv". Para ativar o ambiente virtual, faça: <cd venv>, <cd Scripts>, <activate>, para desativar o ambiente de desenvolvimento (env), use o comando <deactivate> dentro da pasta Scripts.
+
+Aula 2
+A janela do terminal vai iniciar o caminho dos diretórios c o padrão (venv), q significa que deu certo. Depois disso na raiz da pasta do projeto, instale o django, faça: <pip install django>.
+
+Aula 5 - Criação e configuração inicial do projeto.
+Após estes passos já é possível criar um projeto usando o django-admin, para isso, faça: <django-admin startproject nome_do_projeto>. Depois de usar o pip install django, já é possivel usar o django-admin pelo terminal.
+
+Com o projeto criado, o passo seguinte é criar um app (o site em si) <python manage.py startapp nome_do_app>
+
+Aula 7
+Registre a aplicação e crie um banco de dados para ela com esse comando (na raiz da pasta do projeto) <python manage.py migrate> (Aula 5,  3min).
+
+Rodar a aplicação <python manage.py runserver>. A aplicação iniciará em: http://127.0.0.1:8000/
+
+Crie um superusiario para acessar a area de admin, faça: <python manage.py createsuperuser> (criei a loja_virtual com usuário: admin e senha: admin).
+
+Aula 6 a 10 - Criar views w usar URLs
+Crie uma pasta chamada "templates" dentro do seu app
+Crie uma pasta com o nome do seu app dentro da pasta templates
+
+
+Aula 11 - Models
+<python makemigrations> vai criar o arquivo dque conterá os dados de migração p o BD e fica dentro da pasta "migrations"
+<python manage.py migrate> vai migrar as especificações do model para o bando de dados.
+

@@ -1,0 +1,74 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href=" {% static 'css/style.css' %} ">
+    <link rel="stylesheet" href=" {% static 'css/mdb.min.css' %} ">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css">
+</head>
+<body>
+    <!--Navbar -->
+    <nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color">
+      <a class="navbar-brand" href="{% url 'url_home' %}">Bom Negócio .Com</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+        aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="col-md-2"></div>
+      {% if usuario.id %}
+      <div class="col-md-6">        
+        <form action="{% url 'url_pesquisa_filtrada' %}" method="POST">
+
+          {% csrf_token %} <!-- Todo form  que usa POST deve ter o csrf_token -->
+          <!-- Search form -->
+          <input name="chave" class="form-control" type="text" placeholder="O que você procura ?" aria-label="Search">
+        </form>        
+      </div>
+      {% endif %}
+      <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+            <li class="nav-item ">
+            <a class="nav-link" href="#">
+              <i class="fas fa-cart-arrow-down"></i>
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              {% if usuario.id %} {{  usuario }} {% endif %} <i class="fas fa-user"> </i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right dropdown-default"
+                 aria-labelledby="navbarDropdownMenuLink-333">
+                <a class="dropdown-item" href="{% url 'url_minha_conta' %}">Minha Conta</a>
+                <a class="dropdown-item" href="{% url 'url_logout_user' %}">Sair</a>                
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    
+    {% block content %}
+    {% endblock %}
+
+    <script src="{% static 'js/jquery-3.4.1.min.js' %}" ></script>
+    <script src="{% static 'js/popper.min.js' %}" ></script>
+    <script src="{% static 'js/bootstrap.min.js' %}" ></script>
+    <script src="{% static 'js/mdb.min.js' %}" ></script>
+    <script src="{% static 'js/scripts.js' %}" ></script>
+</body>
+</html>
+
+
+
+
+
+
+
+

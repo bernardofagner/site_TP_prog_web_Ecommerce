@@ -1,0 +1,81 @@
+{% extends 'loja/menu.html' %}
+<!-- Carrega a URL base para a pasta de CSS e scripts -->
+{% load static %}
+
+{% block content %}
+    <div class="container">
+
+    <div class="row">
+
+      <div class="col-lg-3">
+
+        <h1 class="my-4">Categorias</h1>
+        <div class="list-group">
+            <a href="{% url  'url_home' %}" class="list-group-item"> Todas</a>
+            {% for categoria in categorias %}
+                <a href="{% url 'url_listar_por_categoria' categoria.id %}" class="list-group-item">{{ categoria.nome }} </a>
+            {%endfor%}
+        </div>
+
+      </div>
+      <!-- /.col-lg-3 -->
+
+      <div class="col-lg-9">
+
+        <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
+          <ol class="carousel-indicators">
+              {% for categoria in categorias %}
+                  <li data-target="#carouselExampleIndicators" data-slide-to="{{ forloop.counter0 }}" class="{% if forloop.counter0 == 0 %} active {% endif %}"></li>
+              {%endfor%}
+          </ol>
+          <div class="carousel-inner" role="listbox">
+              {% for categoria in categorias %}
+                <div class="carousel-item {% if forloop.counter == 1 %} active {% endif %}" style="width:900px; height:350px; object-fit:cover;">
+                    <a class="img-ink"> {{ categoria.nome }} </a>
+                    <img class="d-block img-fluid" src="{{categoria.imgPath.url}}" alt="First slide" style="width:900px; height:350px;">
+                </div>
+              {%endfor%}
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+
+        <div class="row">
+
+        {% for anuncio in anuncios %}
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="{{anuncio.imgPath.url}}" alt="{{anuncio.titulo}}"></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="{% url 'url_detalhes_anuncio' anuncio.id %}">{{anuncio.titulo}}</a>
+                </h4>
+                <h5>{{anuncio.preco}}</h5>
+                <p class="card-text">{{anuncio.descricao}}</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+              </div>
+            </div>
+          </div>
+        {%endfor%}
+
+        </div>
+        <!-- /.row -->
+
+      </div>
+      <!-- /.col-lg-9 -->
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+{% endblock %}

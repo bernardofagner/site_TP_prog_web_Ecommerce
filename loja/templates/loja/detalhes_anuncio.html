@@ -1,0 +1,37 @@
+{% extends 'loja/menu.html' %}
+<!-- Carrega a URL base para a pasta de CSS e scripts -->
+{% load static %}
+
+{% block content %}
+    <div class="container">
+    <div class="row">
+        <div class="col-lg-3">
+
+            <h1 class="my-4">Categorias</h1>
+            <div class="list-group">
+                <a href="{% url  'url_home' %}" class="list-group-item"> Todas</a>
+                {% for categoria in categorias %}
+                    <a href="{% url 'url_listar_por_categoria' categoria.id %}" class="list-group-item">{{ categoria.nome }} </a>
+                {%endfor%}
+            </div>
+
+          </div>
+          <!-- /.col-lg-3 -->
+        <div class="col-lg-9">
+            {% for anuncio in anuncios %}
+                <h1 style="text-align: center; margin-top: 50px;" >{{ anuncio.titulo }}</h1>
+                <img class="img-detalhes" src="{{anuncio.imgPath.url}}">
+                <div>
+                    <h3>Descrição: </h3>
+                    <p>{{ anuncio.descricao }} </p>
+                </div>
+                <div>
+                    <h3>Preço</h3>
+                    <p>R$ {{ anuncio.preco }}</p>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+    </div>
+{% endblock %}

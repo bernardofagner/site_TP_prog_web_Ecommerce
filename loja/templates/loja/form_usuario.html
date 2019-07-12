@@ -1,0 +1,60 @@
+{% extends 'loja/menu.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+
+{% block content %}
+    <div class="container">
+        <form method="POST">
+            <h2>Cadastrar usuários</h2>
+            
+            <!-- Protege o form contra ataques cross site request forgery  -->
+            {% csrf_token %}
+
+            <!-- Exibe a variavel usuario vinda do views.py -->
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="row col-md-6">
+
+                    <div class="form-group form-anuncio">
+                        <label class="control-label">Nome de Usuário </label>
+                        <p>This value may contain only letters, numbers, and @/./+/-/_ characters</p>
+                        {{ usuario.username|add_class:"form-control" }}
+                    </div>
+                    <div class="form-group form-anuncio">
+                        <label class="control-label">Primeiro Nome</label>
+                        {{ usuario.first_name|add_class:"form-control" }}
+                    </div>
+                    <div class="form-group form-anuncio">
+                        <label class="control-label">Ultimo nome</label>
+                        {{ usuario.last_name|add_class:"form-control"}}
+                    </div>
+
+                    <div class="form-group form-anuncio">
+                        <label class="control-label">Email</label>
+                        {{ usuario.email|add_class:"form-control"}}
+                    </div>
+
+                    <div class="form-group form-anuncio">
+                        <label class="control-label">Senha</label>
+                        {{ usuario.password1|add_class:"form-control"}}
+                    </div>
+
+                    <div class="form-group form-anuncio">
+                        <label class="control-label">Confirmar Senha</label>
+                        {{ usuario.password2|add_class:"form-control"}}
+                    </div>
+                    
+                    <div class="form-group form-anuncio">
+                        <button type="submit" class="btn btn-primary"> Cadastrar </button>
+                    </div>
+
+                </div>
+
+                <div class="col-md-3"></div>
+                
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'loja/menu.html' %}
+<!-- Carrega a URL base para a pasta de CSS e scripts -->
+{% load static %}
+
+{% block content %}
+    <div class="container">
+    <h1 class="flex-center" >Meus Anuncios</h1>
+
+    <div class="row meus-anuncios">
+            <a class="btn btn-primary" href="{% url 'url_cadastrar_anuncio' %}">Cadastrar um anúncio</a>
+    </div>
+    
+    {% for anuncio in anuncios %}
+        <div class="row meus-anuncios">
+            <div class="col-md-3 col-sm-2">
+                <img class="d-block img-fluid anuncio-img" src="{{anuncio.imgPath.url}}" alt="First slide" style="width:250px; height:120px; ">
+            </div>
+            <div class="col-md-5 col-sm-4">
+                <a href="{% url 'url_detalhes_anuncio' anuncio.id %}">{{anuncio.titulo}}</a>
+                <p>{{ anuncio.descricao }}</p>
+            </div>
+            <div class="col-md-2 col-sm-2">
+                <h5>Preço</h5>
+                <p>R$ {{ anuncio.preco }}</p>
+            </div>
+            <div class="col-md-2 col-sm-4">
+                <a class="btn btn-primary editar" href="{% url 'url_atualizar_anuncio' anuncio.id %}" >Editar</a><br>
+                <a class="btn btn-primary apagar" href="{% url 'url_excluir_anuncio' anuncio.id %}" >Apagar</a>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}
